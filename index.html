@@ -1,0 +1,348 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link rel="stylesheet" href="https://unpkg.com/botui/build/botui.min.css">
+
+    <link rel="stylesheet" href="https://unpkg.com/botui/build/botui-theme-default.css">
+
+    
+
+    <title>Arbol Demo</title>
+</head>
+<body>
+
+    
+    <div class="botui-app-container" id="hello-world">
+        <bot-ui></bot-ui>
+    </div>
+
+
+    <script src="https://cdn.jsdelivr.net/vue/latest/vue.min.js"></script>
+    <script src="https://unpkg.com/botui/build/botui.min.js"></script>   
+    
+    <script>
+ 
+
+
+        var botui = new BotUI('hello-world');
+
+
+        // let preguntar = (pregunta,confirmacion,rechazo)=>{
+
+        //     botui.message.add({
+        //     content: pregunta
+        //     }).then(function () { 
+
+        //         botui.action.button({
+        //         action: [
+        //             { 
+        //                 text: 'Sí',
+        //                 value: 'si'
+        //             },
+        //             { 
+        //                 text: 'No',
+        //                 value: 'no'
+        //             }
+        //         ]
+        //         }).then(function (res) { 
+
+        //             if(res.value=="si"){
+
+        //                 confirmacion()
+
+        //             }else{
+
+        //                 rechazo()
+
+        //             }
+
+        //         })
+                
+        //     })
+
+        // }
+  
+        // botui.message.add({
+        //   content: 'Hola, soy un Bot hecho para ayudarte :)'
+        // }).then(function () { // wait till previous message has been shown.
+
+
+        //     preguntar('Deseas utilizar el ticket?',preguntar('Necesitas ayuda?',()=>{
+        //         //entrar a mis viajes para visualizar lo que ve el cliente
+
+        //         //verificar que opciones se le ofrecen
+
+        //         //enviar un mail con los pasos que debe seguir el cliente en mis viajes
+
+        //     }, preguntar('Cuestiona la fecha limite para la reemision del boleto?',
+        //         ()=>{
+        //                 //corroborar en el g-sheet las fechas limites para la reemision
+
+        //                 //enviar mail al cliente indicando las fechas limites
+        //         }, preguntar('Cuestiona la fecha limite para el vuelo?',()=>{
+        //             //corroborar en el g-sheet las fechas limites para el vuelo
+
+        //             //enviar mail al cliente citando las fechas dispuestas por la LLAA
+        //         }, preguntar('Solicita un cambio de ruta?',()=>{
+        //             //ver en el g-sheet las politicas sobre los cambios de ruta
+        //             preguntar('La LLAA permite cambios de ruta?',()=>{
+        //                 //indicar al cliente que se puede autogestionar
+        //             },()=>{
+        //                 //enviar mail indicando las politicas
+        //             })
+        //         },()=>{})))), preguntar('Solicita un reembolso?',()=>{
+        //                     //ver politicas de LLAA
+
+        //                     //si en la g-sheet no se indican, comunicarse con la LLAA
+
+        //                     //informar al cliente fechas limites y cargos
+        //         },preguntar('Cuestiona que se le haya cobrado un cargo de tarifa?',()=>{
+        //             //verificar si en la comunicacion de Despegar, se envio la informacion de que la LLAA pueda a llegar a aplicar cargos
+
+        //             //consultar las politicas para ratificar la aplicacion de cargos
+
+        //             //enviar mail indicando las politicas de LLAA
+        //         },()=>{})))
+
+        //     })
+
+
+
+
+
+
+
+  
+        botui.message.add({
+          content: 'Hola, soy un Bot hecho para ayudarte :)'
+        }).then(function () { // wait till previous message has been shown.
+  
+            botui.message.add({
+            content: 'Deseas utilizar el ticket?'
+            }).then(function () { 
+
+                botui.action.button({
+                action: [
+                    { 
+                        text: 'Sí',
+                        value: 'si'
+                    },
+                    { 
+                        text: 'No',
+                        value: 'no'
+                    }
+                ]
+                }).then(function (res) { 
+
+                    if(res.value=="si"){
+
+                        botui.message.add({
+                            content: 'Necesitas ayuda?'
+                        }).then(function (res){
+
+                            botui.action.button({
+                                action: [
+                                    { 
+                                        text: 'Sí',
+                                        value: 'si'
+                                    },
+                                    { 
+                                        text: 'No',
+                                        value: 'no'
+                                    }
+                                ]
+                            }).then(function (res){
+
+                                if(res.value=="si"){
+
+                                    //entrar a mis viajes para visualizar lo que ve el cliente
+
+                                    //verificar que opciones se le ofrecen
+
+                                    //enviar un mail con los pasos que debe seguir el cliente en mis viajes
+
+                                }else{
+
+                                    botui.message.add({
+                                        content: 'Cuestiona la fecha limite para la reemision del boleto?'
+                                    }).then(function (res){
+
+                                        botui.action.button({
+                                        action: [
+                                            { 
+                                                text: 'Sí',
+                                                value: 'si'
+                                            },
+                                            { 
+                                                text: 'No',
+                                                value: 'no'
+                                            }
+                                        ]
+                                        }).then(function (res) { 
+
+                                        if(res.value=="si"){
+
+                                            //corroborar en el g-sheet las fechas limites para la reemision
+
+                                            //enviar mail al cliente indicando las fechas limites
+
+                                        }else{
+
+                                            botui.message.add({
+                                                content: 'Cuestiona la fecha limite para el vuelo?'
+                                            }).then(function (res){
+
+                                                botui.action.button({
+                                                action: [
+                                                    { 
+                                                        text: 'Sí',
+                                                        value: 'si'
+                                                    },
+                                                    { 
+                                                        text: 'No',
+                                                        value: 'no'
+                                                    }
+                                                ]
+                                                }).then(function (res) { 
+
+                                                if(res.value=="si"){
+                                                    
+                                                    //corroborar en el g-sheet las fechas limites para el vuelo
+
+                                                    //enviar mail al cliente citando las fechas dispuestas por la LLAA
+                                                
+                                                
+                                                }else{
+
+                                                    botui.message.add({
+                                                        content: 'Solicita un cambio de ruta?'
+                                                    }).then(function (res){
+
+                                                        //ver en el g-sheet las politicas sobre los cambios de ruta
+
+                                                        botui.message.add({
+                                                            content: 'La LLAA permite cambios de ruta?'
+                                                        }).then(function (res){
+
+                                                            botui.action.button({
+                                                            action: [
+                                                                { 
+                                                                    text: 'Sí',
+                                                                    value: 'si'
+                                                                },
+                                                                { 
+                                                                    text: 'No',
+                                                                    value: 'no'
+                                                                }
+                                                            ]
+                                                            }).then(function (res) { 
+
+                                                            if(res.value=="si"){
+
+                                                                //indicar al cliente que se puede autogestionar
+
+                                                            }else{
+                                                                //enviar mail indicando las politicas
+                                                            }
+
+                                                        })
+
+                                                        })
+
+                                                    })
+
+                                                }
+
+                                            })
+
+                                            })
+
+                                        }
+
+                                    })
+
+                                    })
+
+                                }
+
+                            })
+
+                        })
+
+                    }else{
+
+                        botui.message.add({
+                          content: 'Solicita un reembolso?'
+                        }).then(function (res){
+
+                            botui.action.button({
+                            action: [
+                                { 
+                                    text: 'Sí',
+                                    value: 'si'
+                                },
+                                { 
+                                    text: 'No',
+                                    value: 'no'
+                                }
+                            ]
+                            }).then(function (res) { 
+
+                            if(res.value=="si"){
+
+                                //ver politicas de LLAA
+
+                                //si en la g-sheet no se indican, comunicarse con la LLAA
+
+                                //informar al cliente fechas limites y cargos
+
+                            }else{
+
+                                botui.message.add({
+                                    content: 'Cuestiona que se le haya cobrado un cargo de tarifa?'
+                                }).then(function (res){
+
+                                    botui.action.button({
+                                    action: [
+                                        { 
+                                            text: 'Sí',
+                                            value: 'si'
+                                        },
+                                        { 
+                                            text: 'No',
+                                            value: 'no'
+                                        }
+                                    ]
+                                    }).then(function (res) { 
+
+                                        //verificar si en la comunicacion de Despegar, se envio la informacion de que la LLAA pueda a llegar a aplicar cargos
+
+                                        //consultar las politicas para ratificar la aplicacion de cargos
+
+                                        //enviar mail indicando las politicas de LLAA
+
+                                    })
+
+                                })
+
+                            }
+
+                        })
+
+                        })
+
+                    }
+
+                });
+    
+            });
+
+        });
+      </script>
+
+</body>
+</html>
